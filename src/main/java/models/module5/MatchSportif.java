@@ -1,8 +1,8 @@
-package models.module4;
+package models.module5;
 
 import models.module1.Equipe;
-import models.module5.PerformanceAthlete;
-import models.module5.PerformanceEquipe;
+import models.module4.PerformanceEquipe;
+import models.module4.Tournois;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,7 +16,6 @@ public class MatchSportif {
     private LocalDateTime date;
     private String lieu;
 
-    private List<PerformanceEquipe> performanceEquipes;
     private List<PerformanceAthlete> performanceAthletes;
 
     public MatchSportif(int id, Tournois tournois, Equipe equipe1, Equipe equipe2, LocalDateTime date, String lieu) {
@@ -26,7 +25,6 @@ public class MatchSportif {
         this.equipe2 = equipe2;
         this.date = date;
         this.lieu = lieu;
-        this.performanceEquipes = new ArrayList<>();
         this.performanceAthletes = new ArrayList<>();
     }
 
@@ -36,13 +34,11 @@ public class MatchSportif {
         this.equipe2 = equipe2;
         this.date = date;
         this.lieu = lieu;
-        this.performanceEquipes = new ArrayList<>();
         this.performanceAthletes = new ArrayList<>();
 
     }
 
     public MatchSportif() {
-        this.performanceEquipes = new ArrayList<>();
         this.performanceAthletes = new ArrayList<>();
 
     }
@@ -95,13 +91,7 @@ public class MatchSportif {
         this.lieu = lieu;
     }
 
-    public List<PerformanceEquipe> getPerformanceEquipes() {
-        return performanceEquipes;
-    }
 
-    public void setPerformanceEquipes(List<PerformanceEquipe> performanceEquipes) {
-        this.performanceEquipes = performanceEquipes;
-    }
 
     public List<PerformanceAthlete> getPerformanceAthletes() {
         return performanceAthletes;

@@ -1,7 +1,6 @@
 package models.module5;
 
 import models.module1.Utilisateur;
-import models.module4.MatchSportif;
 
 public class PerformanceAthlete {
     private int id;

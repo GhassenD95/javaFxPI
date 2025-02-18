@@ -1,6 +1,5 @@
 package services.module2;
 
-import models.module1.Equipe;
 import models.module2.Exercice;
 import services.BaseService;
 import services.IService;
@@ -101,5 +100,7 @@ public class ServiceExercice extends BaseService implements IService<Exercice> {
         }
         return exercices;
     }
+
+
 
 }

@@ -4,6 +4,10 @@ import models.module1.Equipe;
 import models.module1.Utilisateur;
 import services.BaseService;
 import services.IService;
+import services.module3.ServiceBlessure;
+import services.module3.ServiceDossierMedical;
+import services.module5.ServicePerformanceAthlete;
+import services.module6.ServiceInstallationSportive;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -114,6 +118,13 @@ public class ServiceUtilisateur extends BaseService implements IService<Utilisat
                 returnedUtilisateur.setEquipe(se.get(equipe_id));
 
             }
+
+            //fill lists
+            returnedUtilisateur.setPerformances(new ServicePerformanceAthlete().getPerformanceAthletesById(returnedUtilisateur.getId()));
+            returnedUtilisateur.setEquipesEntrainees(new ServiceEquipe().getEquipesByCoachId(returnedUtilisateur.getId()));
+            returnedUtilisateur.setBlessures(new ServiceBlessure().getBlessuresByAthleteId(returnedUtilisateur.getId()));
+            returnedUtilisateur.setInstallationSportives(new ServiceInstallationSportive().getInstallationSportivesByManagerId(returnedUtilisateur.getId()));
+            returnedUtilisateur.setDossierMedicals(new ServiceDossierMedical().getDossierMedicalsByAthleteId(returnedUtilisateur.getId()));
             return  returnedUtilisateur;
         }
         return null;
@@ -146,6 +157,13 @@ public class ServiceUtilisateur extends BaseService implements IService<Utilisat
                 returnedUtilisateur.setEquipe(se.get(equipe_id));
             }
 
+            //fill lists
+            returnedUtilisateur.setPerformances(new ServicePerformanceAthlete().getPerformanceAthletesById(returnedUtilisateur.getId()));
+            returnedUtilisateur.setEquipesEntrainees(new ServiceEquipe().getEquipesByCoachId(returnedUtilisateur.getId()));
+            returnedUtilisateur.setBlessures(new ServiceBlessure().getBlessuresByAthleteId(returnedUtilisateur.getId()));
+            returnedUtilisateur.setInstallationSportives(new ServiceInstallationSportive().getInstallationSportivesByManagerId(returnedUtilisateur.getId()));
+            returnedUtilisateur.setDossierMedicals(new ServiceDossierMedical().getDossierMedicalsByAthleteId(returnedUtilisateur.getId()));
+
             returnedUtilisateurs.add(returnedUtilisateur);
         }
 
@@ -176,6 +194,13 @@ public class ServiceUtilisateur extends BaseService implements IService<Utilisat
             // Set the equipe field (only needed if you need the entire team object; otherwise, you can skip this)
             returnedUtilisateur.setEquipe(new Equipe());  // No need to query ServiceEquipe here
 
+
+            //fill lists
+            returnedUtilisateur.setPerformances(new ServicePerformanceAthlete().getPerformanceAthletesById(returnedUtilisateur.getId()));
+            returnedUtilisateur.setEquipesEntrainees(new ServiceEquipe().getEquipesByCoachId(returnedUtilisateur.getId()));
+            returnedUtilisateur.setBlessures(new ServiceBlessure().getBlessuresByAthleteId(returnedUtilisateur.getId()));
+            returnedUtilisateur.setInstallationSportives(new ServiceInstallationSportive().getInstallationSportivesByManagerId(returnedUtilisateur.getId()));
+            returnedUtilisateur.setDossierMedicals(new ServiceDossierMedical().getDossierMedicalsByAthleteId(returnedUtilisateur.getId()));
             returnedUtilisateurs.add(returnedUtilisateur);
         }
         return returnedUtilisateurs;

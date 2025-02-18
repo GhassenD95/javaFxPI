@@ -3,8 +3,8 @@ package services.module2;
 import models.module2.Entrainment;
 import services.BaseService;
 import services.IService;
-import services.module6.ServiceInstallationSportive;
 import services.module1.ServiceEquipe;
+import services.module6.ServiceInstallationSportive;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -155,5 +155,48 @@ public class ServiceEntrainment extends BaseService implements IService<Entrainm
         }
         return returnedEntrainments;
 
+    }
+
+    public List<Entrainment> getEntrainmentsByEquipeId(int equipe_id) throws SQLException {
+        String sql = "SELECT * FROM entrainment WHERE equipe_id = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, equipe_id);
+        ResultSet rs = stmt.executeQuery();
+        List<Entrainment> returnedEntrainments = new ArrayList<>();
+        while (rs.next()) {
+            Entrainment returnedEntrainment = new Entrainment();
+            returnedEntrainment.setId(rs.getInt("id"));
+            returnedEntrainment.setNom(rs.getString("nom"));
+            returnedEntrainment.setDescription(rs.getString("description"));
+            returnedEntrainment.setDateDebut(rs.getTimestamp("dateDebut").toLocalDateTime());
+            returnedEntrainment.setDateFin(rs.getTimestamp("dateFin").toLocalDateTime());
+            returnedEntrainment.setEquipe(new ServiceEquipe().get(rs.getInt("equipe_id")));
+            returnedEntrainment.setInstallationSportive(new ServiceInstallationSportive().get(rs.getInt("installationSportive_id")));
+
+            returnedEntrainments.add(returnedEntrainment);
+        }
+        return returnedEntrainments;
+    }
+
+    public List<Entrainment> getEntrainmentsByInstallationSportiveId(int installationSportive_id) throws SQLException {
+        List<Entrainment> returnedEntrainments = new ArrayList<>();
+        String sql = "SELECT * FROM entrainment WHERE installationSportive_id = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, installationSportive_id);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Entrainment returnedEntrainment = new Entrainment();
+            returnedEntrainment.setId(rs.getInt("id"));
+            returnedEntrainment.setNom(rs.getString("nom"));
+            returnedEntrainment.setDescription(rs.getString("description"));
+            returnedEntrainment.setDateDebut(rs.getTimestamp("dateDebut").toLocalDateTime());
+            returnedEntrainment.setDateFin(rs.getTimestamp("dateFin").toLocalDateTime());
+            returnedEntrainment.setEquipe(new ServiceEquipe().get(rs.getInt("equipe_id")));
+            returnedEntrainment.setInstallationSportive(new ServiceInstallationSportive().get(rs.getInt("installationSportive_id")));
+
+            returnedEntrainments.add(returnedEntrainment);
+
+        }
+        return returnedEntrainments;
     }
 }

@@ -3,7 +3,7 @@ package models.module1;
 import enums.Division;
 import enums.Sport;
 import models.module2.Entrainment;
-import models.module5.PerformanceEquipe;
+import models.module4.PerformanceEquipe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +18,10 @@ public class Equipe {
 
     List<Utilisateur> athletes;
     List<Entrainment> entrainments;
-    List<PerformanceEquipe> performances;
 
     public Equipe() {
         this.athletes = new ArrayList<>();
         this.entrainments = new ArrayList<>();
-        this.performances = new ArrayList<>();
     }
 
 
@@ -36,7 +34,6 @@ public class Equipe {
         this.coach = coach;
         this.athletes = new ArrayList<>();
         this.entrainments = new ArrayList<>();
-        this.performances = new ArrayList<>();
 
     }
 
@@ -48,7 +45,6 @@ public class Equipe {
         this.coach = coach;
         this.athletes = new ArrayList<>();
         this.entrainments = new ArrayList<>();
-        this.performances = new ArrayList<>();
     }
 
     public Equipe(String nom, Sport sport, Division division, boolean isLocal) {
@@ -58,7 +54,6 @@ public class Equipe {
         this.isLocal = isLocal;
         this.athletes = new ArrayList<>();
         this.entrainments = new ArrayList<>();
-        this.performances = new ArrayList<>();
     }
 
     public int getId() {
@@ -125,13 +120,6 @@ public class Equipe {
         this.entrainments = entrainments;
     }
 
-    public List<PerformanceEquipe> getPerformances() {
-        return performances;
-    }
-
-    public void setPerformances(List<PerformanceEquipe> performances) {
-        this.performances = performances;
-    }
 
     @Override
     public String toString() {

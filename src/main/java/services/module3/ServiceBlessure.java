@@ -84,4 +84,24 @@ public class ServiceBlessure extends BaseService implements IService<Blessure> {
         }
         return blessures;
     }
+
+    public List<Blessure> getBlessuresByAthleteId(int athlete_id) throws SQLException {
+        List<Blessure> blessures = new ArrayList<>();
+        String sql = "SELECT * FROM blessure WHERE athlete_id = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, athlete_id);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Blessure blessure = new Blessure();
+            blessure.setId(rs.getInt("id"));
+            blessure.setDescription(rs.getString("description"));
+            blessure.setId(rs.getInt("id"));
+            blessure.setAthlete(new ServiceUtilisateur().get(rs.getInt("athlete_id")));
+            blessure.setDateBlessure(rs.getTimestamp("dateBlessure").toLocalDateTime());
+            blessure.setDateReprise(rs.getTimestamp("dateReprise").toLocalDateTime());
+            blessures.add(blessure);
+
+        }
+        return blessures;
+    }
 }

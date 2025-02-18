@@ -95,4 +95,28 @@ public class ServiceEquipement extends BaseService implements IService<Equipemen
         }
         return equipements;
     }
+
+    public List<Equipement> getEquipementsByInstallationSportiveId(int installationSportive_id) throws SQLException {
+        List<Equipement> equipements = new ArrayList<>();
+        String sql = "SELECT * FROM equipement where installationSportive_id = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, installationSportive_id);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Equipement equipement = new Equipement();
+            equipement.setId(rs.getInt("id"));
+            equipement.setNom(rs.getString("nom"));
+            equipement.setDescription(rs.getString("description"));
+            equipement.setEtat(EtatEquipement.valueOf(rs.getString("etat")));
+            equipement.setTypeEquipement(TypeEquipement.valueOf(rs.getString("typeEquipement")));
+            equipement.setImage_url(rs.getString("image_url"));
+            equipement.setQuantite(rs.getInt("quantite"));
+            equipement.setInstallationSportive(new ServiceInstallationSportive().get(rs.getInt("installationSportive_id")));
+
+            equipements.add(equipement);
+
+        }
+        return equipements;
+    }
 }

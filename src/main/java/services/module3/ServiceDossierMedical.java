@@ -86,4 +86,26 @@ public class ServiceDossierMedical extends BaseService implements IService<Dossi
         }
         return dossierMedicals;
     }
+
+    public List<DossierMedical> getDossierMedicalsByAthleteId(int athlete_id) throws SQLException {
+        String sql = "SELECT * FROM dossiermedical WHERE athlete_id = ?";
+        List<DossierMedical> dossierMedicals = new ArrayList<DossierMedical>();
+
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, athlete_id);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            DossierMedical dossierMedical = new DossierMedical();
+            dossierMedical.setId(rs.getInt("id"));
+            dossierMedical.setAllergies(rs.getString("allergies"));
+            dossierMedical.setVaccinations(rs.getString("vaccinations"));
+            dossierMedical.setDescription(rs.getString("description"));
+            dossierMedical.setEtatAthlete(EtatAthlete.valueOf(rs.getString("etatAthlete")));
+            dossierMedical.setDernierCheckup(rs.getTimestamp("dernierCheckup").toLocalDateTime());
+
+            dossierMedicals.add(dossierMedical);
+
+        }
+        return dossierMedicals;
+    }
 }

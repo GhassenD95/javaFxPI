@@ -1,6 +1,8 @@
 package models.module4;
 
+import enums.Sport;
 import enums.TypeTournois;
+import models.module5.MatchSportif;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,37 +11,38 @@ import java.util.List;
 public class Tournois {
     private int id;
     private String nom;
-    private TypeTournois typeTournois;
+    private Sport sport;
     private LocalDateTime dateDebut;
     private LocalDateTime dateFin;
-    private String image_url;
+    private String adresse;
 
     private List<MatchSportif> matches;
+    private List<PerformanceEquipe> performanceEquipes;
 
-    public Tournois(int id, String nom, TypeTournois typeTournois, LocalDateTime dateDebut, LocalDateTime dateFin, String image_url) {
+    public Tournois(int id, String nom, Sport sport, LocalDateTime dateDebut, LocalDateTime dateFin, String adresse) {
         this.id = id;
         this.nom = nom;
-        this.typeTournois = typeTournois;
+        this.sport = sport;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.image_url = image_url;
-        this.matches = new ArrayList<MatchSportif>();
+        this.adresse = adresse;
+        this.matches = new ArrayList<>();
+        this.performanceEquipes = new ArrayList<>();
     }
 
-    public Tournois(String nom, TypeTournois typeTournois, LocalDateTime dateDebut, LocalDateTime dateFin, String image_url, List<MatchSportif> matches) {
+    public Tournois(String nom, Sport sport, LocalDateTime dateDebut, LocalDateTime dateFin, String adresse) {
         this.nom = nom;
-        this.typeTournois = typeTournois;
+        this.sport = sport;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.image_url = image_url;
-        this.matches = matches;
-        this.matches = new ArrayList<MatchSportif>();
+        this.adresse = adresse;
+        this.matches = new ArrayList<>();
+        this.performanceEquipes = new ArrayList<>();
 
     }
 
     public Tournois() {
-        this.matches = new ArrayList<MatchSportif>();
-
+        this.matches = new ArrayList<>();
     }
 
     public int getId() {
@@ -58,12 +61,12 @@ public class Tournois {
         this.nom = nom;
     }
 
-    public TypeTournois getTypeTournois() {
-        return typeTournois;
+    public Sport getSport() {
+        return sport;
     }
 
-    public void setTypeTournois(TypeTournois typeTournois) {
-        this.typeTournois = typeTournois;
+    public void setSport(Sport sport) {
+        this.sport = sport;
     }
 
     public LocalDateTime getDateDebut() {
@@ -82,12 +85,12 @@ public class Tournois {
         this.dateFin = dateFin;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public List<MatchSportif> getMatches() {
@@ -96,5 +99,13 @@ public class Tournois {
 
     public void setMatches(List<MatchSportif> matches) {
         this.matches = matches;
+    }
+
+    public List<PerformanceEquipe> getPerformanceEquipes() {
+        return performanceEquipes;
+    }
+
+    public void setPerformanceEquipes(List<PerformanceEquipe> performanceEquipes) {
+        this.performanceEquipes = performanceEquipes;
     }
 }

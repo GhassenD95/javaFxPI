@@ -1,10 +1,10 @@
-package services.module5;
+package services.module4;
 
-import models.module5.PerformanceEquipe;
+import models.module4.PerformanceEquipe;
 import services.BaseService;
 import services.IService;
 import services.module1.ServiceEquipe;
-import services.module4.ServiceMatchSportif;
+import services.module5.ServiceMatchSportif;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,22 +13,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServicePerformanceEquipe extends BaseService implements IService<PerformanceEquipe> {
+
     @Override
     public void add(PerformanceEquipe performanceEquipe) throws SQLException {
-        //equipe_id	match_id	scoreEquipe1	scoreEquipe2	possessionBalle	contres	fautes	cartonsJaunes	cartonsRouges
-        String sql = "INSERT INTO performanceequipe(equipe_id, match_id, scoreEquipe1, scoreEquipe2, possessionBalle, contres,fautes, cartonsJaunes, cartonsRouges ) VALUES (?,?,?,?,?,?,?,?,?)";
+        //equipe_id	tournois_id	victoires	pertes	rang
+        String sql = "INSERT INTO performanceequipe(equipe_id, tournois_id, victoires, pertes, rang) VALUES (?,?,?,?,?)";
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setInt(1, performanceEquipe.getEquipe().getId());
-        stmt.setInt(2, performanceEquipe.getMatchSportif().getId());
-        stmt.setInt(3, performanceEquipe.getScoreEquipe1());
-        stmt.setInt(4, performanceEquipe.getScoreEquipe2());
-        stmt.setDouble(5, performanceEquipe.getPossessionBalle());
-        stmt.setInt(6, performanceEquipe.getContres());
-        stmt.setInt(7, performanceEquipe.getFautes());
-        stmt.setInt(8, performanceEquipe.getCartonsJaunes());
-        stmt.setInt(9, performanceEquipe.getCartonsRouges());
+        stmt.setInt(2, performanceEquipe.getTournois().getId());
+        stmt.setInt(3, performanceEquipe.getVictoires());
+        stmt.setInt(4, performanceEquipe.getPertes());
+        stmt.setInt(5, performanceEquipe.getRang());
+
         stmt.executeUpdate();
-        System.out.println("performanceEquipe ajoute");
+        System.out.println("Performance equipe ajoute");
     }
 
     @Override
@@ -42,8 +40,7 @@ public class ServicePerformanceEquipe extends BaseService implements IService<Pe
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setInt(1, performanceEquipe.getId());
         stmt.executeUpdate();
-
-        System.out.println("performanceEquipe supprimer");
+        System.out.println("Performance equipe supprimer");
     }
 
     @Override
@@ -61,14 +58,10 @@ public class ServicePerformanceEquipe extends BaseService implements IService<Pe
             PerformanceEquipe performanceEquipe = new PerformanceEquipe();
             performanceEquipe.setId(rs.getInt("id"));
             performanceEquipe.setEquipe(new ServiceEquipe().get(rs.getInt("equipe_id")));
-            performanceEquipe.setContres(rs.getInt("contres"));
-            performanceEquipe.setFautes(rs.getInt("fautes"));
-            performanceEquipe.setCartonsJaunes(rs.getInt("cartonsJaunes"));
-            performanceEquipe.setCartonsRouges(rs.getInt("cartonsRouges"));
-            performanceEquipe.setScoreEquipe1(rs.getInt("scoreEquipe1"));
-            performanceEquipe.setScoreEquipe2(rs.getInt("scoreEquipe2"));
-            performanceEquipe.setPossessionBalle(rs.getInt("possessionBalle"));
-            performanceEquipe.setMatchSportif(new ServiceMatchSportif().get(rs.getInt("match_id")));
+            performanceEquipe.setTournois(new ServiceTournois().get(rs.getInt("tournois_id")));
+            performanceEquipe.setVictoires(rs.getInt("victoires"));
+            performanceEquipe.setPertes(rs.getInt("pertes"));
+            performanceEquipe.setRang(rs.getInt("rang"));
 
             return performanceEquipe;
 
@@ -78,7 +71,7 @@ public class ServicePerformanceEquipe extends BaseService implements IService<Pe
 
     @Override
     public List<PerformanceEquipe> getAll() throws SQLException {
-        List<PerformanceEquipe> performanceEquipes = new ArrayList<PerformanceEquipe>();
+        List<PerformanceEquipe> performanceEquipes = new ArrayList<>();
         String sql = "SELECT * FROM performanceequipe";
         PreparedStatement stmt = con.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
@@ -86,14 +79,32 @@ public class ServicePerformanceEquipe extends BaseService implements IService<Pe
             PerformanceEquipe performanceEquipe = new PerformanceEquipe();
             performanceEquipe.setId(rs.getInt("id"));
             performanceEquipe.setEquipe(new ServiceEquipe().get(rs.getInt("equipe_id")));
-            performanceEquipe.setContres(rs.getInt("contres"));
-            performanceEquipe.setFautes(rs.getInt("fautes"));
-            performanceEquipe.setCartonsJaunes(rs.getInt("cartonsJaunes"));
-            performanceEquipe.setCartonsRouges(rs.getInt("cartonsRouges"));
-            performanceEquipe.setScoreEquipe1(rs.getInt("scoreEquipe1"));
-            performanceEquipe.setScoreEquipe2(rs.getInt("scoreEquipe2"));
-            performanceEquipe.setPossessionBalle(rs.getInt("possessionBalle"));
-            performanceEquipe.setMatchSportif(new ServiceMatchSportif().get(rs.getInt("match_id")));
+            performanceEquipe.setTournois(new ServiceTournois().get(rs.getInt("tournois_id")));
+            performanceEquipe.setVictoires(rs.getInt("victoires"));
+            performanceEquipe.setPertes(rs.getInt("pertes"));
+            performanceEquipe.setRang(rs.getInt("rang"));
+
+            performanceEquipes.add(performanceEquipe);
+        }
+        return performanceEquipes;
+    }
+
+
+
+    public List<PerformanceEquipe> getPerformanceEquipesByTournoisId(int tournois_id) throws SQLException {
+        List<PerformanceEquipe> performanceEquipes = new ArrayList<>();
+        String sql = "SELECT * FROM performanceequipe WHERE tournois_id = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, tournois_id);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            PerformanceEquipe performanceEquipe = new PerformanceEquipe();
+            performanceEquipe.setId(rs.getInt("id"));
+            performanceEquipe.setEquipe(new ServiceEquipe().get(rs.getInt("equipe_id")));
+            performanceEquipe.setTournois(new ServiceTournois().get(rs.getInt("tournois_id")));
+            performanceEquipe.setVictoires(rs.getInt("victoires"));
+            performanceEquipe.setPertes(rs.getInt("pertes"));
+            performanceEquipe.setRang(rs.getInt("rang"));
 
             performanceEquipes.add(performanceEquipe);
 

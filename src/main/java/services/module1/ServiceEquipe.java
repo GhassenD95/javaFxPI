@@ -4,9 +4,11 @@ import enums.Sport;
 import models.module1.Equipe;
 import models.module1.Utilisateur;
 import models.module2.Entrainment;
+import models.module4.PerformanceEquipe;
 import services.BaseService;
 import services.IService;
 import services.module2.ServiceEntrainment;
+import services.module4.ServicePerformanceEquipe;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +16,6 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ServiceEquipe extends BaseService implements IService<Equipe> {
     @Override
@@ -105,7 +106,11 @@ public class ServiceEquipe extends BaseService implements IService<Equipe> {
             }
             //fill players list
             List<Utilisateur> utilisateurs = serviceUtilisateur.getAthletesByEquipeId(returnedEquipe.getId());
+            List<PerformanceEquipe> performanceEquipes = new ServicePerformanceEquipe().getPerformanceEquipesByEquipeId(returnedEquipe.getId());
+            List<Entrainment> entrainments = new ServiceEntrainment().getEntrainmentsByEquipeId(returnedEquipe.getId());
+            returnedEquipe.setPerformances(performanceEquipes);
             returnedEquipe.setAthletes(utilisateurs);
+            returnedEquipe.setEntrainments(entrainments);
             return returnedEquipe;
 
         }
@@ -138,32 +143,53 @@ public class ServiceEquipe extends BaseService implements IService<Equipe> {
 
             //fill players list
             List<Utilisateur> utilisateurs = serviceUtilisateur.getAthletesByEquipeId(returnedEquipe.getId());
-            List<Entrainment> entrainments = new ServiceEntrainment().getEntrainmentsParEquipeId(returnedEquipe.getId());
+            List<PerformanceEquipe> performanceEquipes = new ServicePerformanceEquipe().getPerformanceEquipesByEquipeId(returnedEquipe.getId());
+            List<Entrainment> entrainments = new ServiceEntrainment().getEntrainmentsByEquipeId(returnedEquipe.getId());
+            returnedEquipe.setPerformances(performanceEquipes);
             returnedEquipe.setAthletes(utilisateurs);
             returnedEquipe.setEntrainments(entrainments);
 
             returnedEquipes.add(returnedEquipe);
         }
-        return returnedEquipes;    }
-
-
-    private List<Utilisateur> getEquipeAthletes(int equipe_id){
-        List<Utilisateur> returnedUtilisateurs = new ArrayList<>();
-        String sql = "SELECT * FROM utilisateur WHERE equipe_id = ?";
-        ServiceUtilisateur serviceUtilisateur = new ServiceUtilisateur();
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, equipe_id);
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
-                Utilisateur returnedUtilisateur = new Utilisateur();
-
-
-                returnedUtilisateurs.add(returnedUtilisateur);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return returnedUtilisateurs;
+        return returnedEquipes;
     }
+    //liste des equipes assigné a un utilisateur coach
+    public List<Equipe> getEquipesByCoachId(int coach_id ) throws SQLException {
+        ServiceUtilisateur serviceUtilisateur = new ServiceUtilisateur();
+        List<Equipe> returnedEquipes = new ArrayList<>();
+
+        String sql = "SELECT * FROM equipe WHERE coach_id = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, coach_id);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Equipe returnedEquipe = new Equipe();
+            returnedEquipe.setId(rs.getInt("id"));
+            returnedEquipe.setNom(rs.getString("nom"));
+            returnedEquipe.setSport(Sport.valueOf(rs.getString("sport")));
+            returnedEquipe.setIsLocal(rs.getBoolean("isLocal"));
+
+            int coach_id_fromDB = rs.getInt("coach_id");
+            if (rs.wasNull()) {
+                returnedEquipe.setCoach(null);
+            } else {
+                returnedEquipe.setCoach(serviceUtilisateur.get(coach_id));
+            }
+
+            //fill players list
+            List<Utilisateur> utilisateurs = serviceUtilisateur.getAthletesByEquipeId(returnedEquipe.getId());
+            List<PerformanceEquipe> performanceEquipes = new ServicePerformanceEquipe().getPerformanceEquipesByEquipeId(returnedEquipe.getId());
+            List<Entrainment> entrainments = new ServiceEntrainment().getEntrainmentsByEquipeId(returnedEquipe.getId());
+            returnedEquipe.setPerformances(performanceEquipes);
+            returnedEquipe.setAthletes(utilisateurs);
+            returnedEquipe.setEntrainments(entrainments);
+
+            returnedEquipes.add(returnedEquipe);
+
+        }
+        return returnedEquipes;
+    }
+
+
+
 }

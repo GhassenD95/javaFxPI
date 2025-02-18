@@ -28,6 +28,7 @@ public class Utilisateur {
     private List<PerformanceAthlete> performances;
     private List<DossierMedical> dossierMedicals;
     private List<InstallationSportive> installationSportives;
+    private List<Equipe> equipesEntrainees;
 
 
     public Utilisateur(int id, String nom, String prenom, Role role, String email, Equipe equipe, String image_url, Status status, String telephone, String adresse, String hashedPassword) {
@@ -46,6 +47,7 @@ public class Utilisateur {
         this.performances = new ArrayList<>();
         this.dossierMedicals = new ArrayList<>();
         this.installationSportives = new ArrayList<>();
+        this.equipesEntrainees = new ArrayList<>();
     }
 
     public Utilisateur(String nom, String prenom, Role role, String email, String hashedPassword, String adresse, String telephone, Status status, String image_url) {
@@ -62,6 +64,7 @@ public class Utilisateur {
         this.performances = new ArrayList<>();
         this.dossierMedicals = new ArrayList<>();
         this.installationSportives = new ArrayList<>();
+        this.equipesEntrainees = new ArrayList<>();
     }
 
     public Utilisateur(String nom, String prenom, Role role, String email, String hashedPassword, String adresse, String telephone, Status status, String image_url, Equipe equipe) {
@@ -79,6 +82,7 @@ public class Utilisateur {
         this.performances = new ArrayList<>();
         this.dossierMedicals = new ArrayList<>();
         this.installationSportives = new ArrayList<>();
+        this.equipesEntrainees = new ArrayList<>();
     }
 
     public Utilisateur() {
@@ -86,6 +90,7 @@ public class Utilisateur {
         this.performances = new ArrayList<>();
         this.dossierMedicals = new ArrayList<>();
         this.installationSportives = new ArrayList<>();
+        this.equipesEntrainees = new ArrayList<>();
     }
 
     public int getId() {
@@ -202,6 +207,14 @@ public class Utilisateur {
 
     public List<InstallationSportive> getInstallationSportives() {
         return installationSportives;
+    }
+
+    public List<Equipe> getEquipesEntrainees() {
+        return equipesEntrainees;
+    }
+
+    public void setEquipesEntrainees(List<Equipe> equipesEntrainees) {
+        this.equipesEntrainees = equipesEntrainees;
     }
 
     public void setInstallationSportives(List<InstallationSportive> installationSportives) {
