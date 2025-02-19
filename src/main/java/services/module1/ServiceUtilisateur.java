@@ -191,9 +191,13 @@ public class ServiceUtilisateur extends BaseService implements IService<Utilisat
             returnedUtilisateur.setTelephone(rs.getString("telephone"));
             returnedUtilisateur.setImage_url(rs.getString("image_url"));
 
-            // Set the equipe field (only needed if you need the entire team object; otherwise, you can skip this)
-            returnedUtilisateur.setEquipe(new Equipe());  // No need to query ServiceEquipe here
-
+            int equipe_id = rs.getInt("equipe_id");
+            if (rs.wasNull()) {
+                returnedUtilisateur.setEquipe(null);
+            } else {
+                ServiceEquipe se = new ServiceEquipe();
+                returnedUtilisateur.setEquipe(se.get(equipe_id));
+            }
 
             //fill lists
             returnedUtilisateur.setPerformances(new ServicePerformanceAthlete().getPerformanceAthletesById(returnedUtilisateur.getId()));
@@ -204,6 +208,36 @@ public class ServiceUtilisateur extends BaseService implements IService<Utilisat
             returnedUtilisateurs.add(returnedUtilisateur);
         }
         return returnedUtilisateurs;
+    }
+
+    public Utilisateur getUtilisateurByEmailPassword(String email, String password) throws SQLException {
+        String sql = "SELECT * FROM utilisateur WHERE email = ? AND hashedPassword = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, email);
+        stmt.setString(2, password);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            Utilisateur returnedUtilisateur = new Utilisateur();
+            returnedUtilisateur.setId(rs.getInt("id"));
+            returnedUtilisateur.setNom(rs.getString("nom"));
+            returnedUtilisateur.setPrenom(rs.getString("prenom"));
+            returnedUtilisateur.setEmail(rs.getString("email"));
+            returnedUtilisateur.setHashedPassword(rs.getString("hashedPassword"));
+            returnedUtilisateur.setAdresse(rs.getString("adresse"));
+            returnedUtilisateur.setTelephone(rs.getString("telephone"));
+            returnedUtilisateur.setImage_url(rs.getString("image_url"));
+            int equipe_id = rs.getInt("equipe_id");
+            if (rs.wasNull()) {
+                returnedUtilisateur.setEquipe(null);
+            } else {
+                ServiceEquipe se = new ServiceEquipe();
+                returnedUtilisateur.setEquipe(se.get(equipe_id));
+
+
+            }
+            return returnedUtilisateur;
+        }
+        return null;
     }
 
 }

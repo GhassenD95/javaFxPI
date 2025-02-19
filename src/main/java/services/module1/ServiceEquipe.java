@@ -106,9 +106,7 @@ public class ServiceEquipe extends BaseService implements IService<Equipe> {
             }
             //fill players list
             List<Utilisateur> utilisateurs = serviceUtilisateur.getAthletesByEquipeId(returnedEquipe.getId());
-            List<PerformanceEquipe> performanceEquipes = new ServicePerformanceEquipe().getPerformanceEquipesByEquipeId(returnedEquipe.getId());
             List<Entrainment> entrainments = new ServiceEntrainment().getEntrainmentsByEquipeId(returnedEquipe.getId());
-            returnedEquipe.setPerformances(performanceEquipes);
             returnedEquipe.setAthletes(utilisateurs);
             returnedEquipe.setEntrainments(entrainments);
             return returnedEquipe;
@@ -143,9 +141,7 @@ public class ServiceEquipe extends BaseService implements IService<Equipe> {
 
             //fill players list
             List<Utilisateur> utilisateurs = serviceUtilisateur.getAthletesByEquipeId(returnedEquipe.getId());
-            List<PerformanceEquipe> performanceEquipes = new ServicePerformanceEquipe().getPerformanceEquipesByEquipeId(returnedEquipe.getId());
             List<Entrainment> entrainments = new ServiceEntrainment().getEntrainmentsByEquipeId(returnedEquipe.getId());
-            returnedEquipe.setPerformances(performanceEquipes);
             returnedEquipe.setAthletes(utilisateurs);
             returnedEquipe.setEntrainments(entrainments);
 
@@ -178,9 +174,7 @@ public class ServiceEquipe extends BaseService implements IService<Equipe> {
 
             //fill players list
             List<Utilisateur> utilisateurs = serviceUtilisateur.getAthletesByEquipeId(returnedEquipe.getId());
-            List<PerformanceEquipe> performanceEquipes = new ServicePerformanceEquipe().getPerformanceEquipesByEquipeId(returnedEquipe.getId());
             List<Entrainment> entrainments = new ServiceEntrainment().getEntrainmentsByEquipeId(returnedEquipe.getId());
-            returnedEquipe.setPerformances(performanceEquipes);
             returnedEquipe.setAthletes(utilisateurs);
             returnedEquipe.setEntrainments(entrainments);
 
