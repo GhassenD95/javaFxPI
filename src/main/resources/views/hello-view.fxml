@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HelloController">
+<StackPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HelloController">
    <children>
       <GridPane alignment="CENTER" hgap="3.0" scaleX="0.7" scaleY="0.7" vgap="3.0">
         <columnConstraints>
@@ -21,7 +21,7 @@
                <children>
                   <ImageView fitHeight="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/magicstudio-art.jpg" />
+                        <Image url="@../images/magicstudio-art.jpg" />
                      </image>
                   </ImageView>
                   <Label text="gestion utilisateurs">
@@ -35,7 +35,7 @@
                  <children>
                      <ImageView fitHeight="250.0" pickOnBounds="true" preserveRatio="true">
                          <image>
-                             <Image url="@images/magicstudio-art4.jpg" />
+                             <Image url="@../images/magicstudio-art4.jpg" />
                          </image>
                      </ImageView>
                      <Label text="gestion equipes">
@@ -50,7 +50,7 @@
                  <children>
                      <ImageView fitHeight="250.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" styleClass="card">
                          <image>
-                             <Image url="@images/magicstudio-art5.jpg" />
+                             <Image url="@../images/magicstudio-art5.jpg" />
                          </image>
                      </ImageView>
                      <Label text="gestion Installations et Equipement">
@@ -65,7 +65,7 @@
                  <children>
                      <ImageView fitHeight="250.0" pickOnBounds="true" preserveRatio="true">
                          <image>
-                             <Image url="@images/magicstudio-art3.jpg" />
+                             <Image url="@../images/magicstudio-art3.jpg" />
                          </image>
                      </ImageView>
                      <Label text="gestion Tournois et matchs">

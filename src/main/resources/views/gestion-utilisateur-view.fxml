@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GestionUtilisateurController" >
+   <children>
+      <VBox StackPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="607.0" layoutY="50.0" text="ajouter utilisateur" onMouseClicked="#onClickGoToAjout"/>
+               </children>
+            </AnchorPane>
+            <!-- ScrollPane to allow scrolling if content exceeds the height/width -->
+      
+      
+            <ScrollPane prefHeight="600.0" prefWidth="800.0">
+               <content>
+                  <!-- Centered HBox inside ScrollPane to ensure VBox is centered horizontally -->
+                  <HBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0">
+                     <VBox fx:id="userCardContainer" alignment="CENTER" prefWidth="600.0" spacing="10">
+                  <!-- Content goes here -->
+               </VBox>
+                  </HBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

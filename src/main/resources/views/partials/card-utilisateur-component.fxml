@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox fx:id="utilisateurCard" alignment="CENTER" minWidth="650" prefHeight="200.0" prefWidth="600.0" spacing="10" styleClass="card" stylesheets="@../../styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CardUtilisateurViewController">
+
+    <children>
+
+        <!-- Image view with fixed size -->
+        <ImageView fx:id="utilisateurImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="profile-img" />
+
+        <!-- Labels with wrapText enabled for better text handling -->
+        <Label fx:id="utilisateurPrenom" text="prenom" wrapText="true" />
+        <Label fx:id="utilisateurNom" text="nom" wrapText="true" />
+        <Label fx:id="utilisateurRole" text="role" wrapText="true" />
+        <Label fx:id="utilisateurEmail" text="email" wrapText="true" />
+        <Label fx:id="utilisateurAdresse" text="adresse" wrapText="true" />
+        <Label fx:id="utilisateurTelephone" text="telephone" wrapText="true" />
+        <Label fx:id="utilisateurStatus" text="status" wrapText="true" />
+        <Label fx:id="utilisateurEquipe" text="equipe" wrapText="true" />
+
+    </children>
+</HBox>

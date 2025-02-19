@@ -1,5 +1,7 @@
 package services.module1;
 
+import enums.Role;
+import enums.Status;
 import models.module1.Equipe;
 import models.module1.Utilisateur;
 import services.BaseService;
@@ -109,6 +111,8 @@ public class ServiceUtilisateur extends BaseService implements IService<Utilisat
             returnedUtilisateur.setAdresse(rs.getString("adresse"));
             returnedUtilisateur.setTelephone(rs.getString("telephone"));
             returnedUtilisateur.setImage_url(rs.getString("image_url"));
+            returnedUtilisateur.setStatus(Status.valueOf(rs.getString("status")));
+            returnedUtilisateur.setRole(Role.valueOf(rs.getString("role")));
             int equipe_id = rs.getInt("equipe_id");
             if(rs.wasNull()) {
                 returnedUtilisateur.setEquipe(null);
@@ -120,11 +124,13 @@ public class ServiceUtilisateur extends BaseService implements IService<Utilisat
             }
 
             //fill lists
+/*
             returnedUtilisateur.setPerformances(new ServicePerformanceAthlete().getPerformanceAthletesById(returnedUtilisateur.getId()));
             returnedUtilisateur.setEquipesEntrainees(new ServiceEquipe().getEquipesByCoachId(returnedUtilisateur.getId()));
             returnedUtilisateur.setBlessures(new ServiceBlessure().getBlessuresByAthleteId(returnedUtilisateur.getId()));
             returnedUtilisateur.setInstallationSportives(new ServiceInstallationSportive().getInstallationSportivesByManagerId(returnedUtilisateur.getId()));
             returnedUtilisateur.setDossierMedicals(new ServiceDossierMedical().getDossierMedicalsByAthleteId(returnedUtilisateur.getId()));
+*/
             return  returnedUtilisateur;
         }
         return null;
@@ -148,6 +154,8 @@ public class ServiceUtilisateur extends BaseService implements IService<Utilisat
             returnedUtilisateur.setAdresse(rs.getString("adresse"));
             returnedUtilisateur.setTelephone(rs.getString("telephone"));
             returnedUtilisateur.setImage_url(rs.getString("image_url"));
+            returnedUtilisateur.setRole(Role.valueOf(rs.getString("role")));
+            returnedUtilisateur.setStatus(Status.valueOf(rs.getString("status")));
 
             int equipe_id = rs.getInt("equipe_id");
             if (rs.wasNull()) {
@@ -158,11 +166,13 @@ public class ServiceUtilisateur extends BaseService implements IService<Utilisat
             }
 
             //fill lists
+/*
             returnedUtilisateur.setPerformances(new ServicePerformanceAthlete().getPerformanceAthletesById(returnedUtilisateur.getId()));
             returnedUtilisateur.setEquipesEntrainees(new ServiceEquipe().getEquipesByCoachId(returnedUtilisateur.getId()));
             returnedUtilisateur.setBlessures(new ServiceBlessure().getBlessuresByAthleteId(returnedUtilisateur.getId()));
             returnedUtilisateur.setInstallationSportives(new ServiceInstallationSportive().getInstallationSportivesByManagerId(returnedUtilisateur.getId()));
             returnedUtilisateur.setDossierMedicals(new ServiceDossierMedical().getDossierMedicalsByAthleteId(returnedUtilisateur.getId()));
+*/
 
             returnedUtilisateurs.add(returnedUtilisateur);
         }
@@ -200,11 +210,11 @@ public class ServiceUtilisateur extends BaseService implements IService<Utilisat
             }
 
             //fill lists
-            returnedUtilisateur.setPerformances(new ServicePerformanceAthlete().getPerformanceAthletesById(returnedUtilisateur.getId()));
+           /* returnedUtilisateur.setPerformances(new ServicePerformanceAthlete().getPerformanceAthletesById(returnedUtilisateur.getId()));
             returnedUtilisateur.setEquipesEntrainees(new ServiceEquipe().getEquipesByCoachId(returnedUtilisateur.getId()));
             returnedUtilisateur.setBlessures(new ServiceBlessure().getBlessuresByAthleteId(returnedUtilisateur.getId()));
             returnedUtilisateur.setInstallationSportives(new ServiceInstallationSportive().getInstallationSportivesByManagerId(returnedUtilisateur.getId()));
-            returnedUtilisateur.setDossierMedicals(new ServiceDossierMedical().getDossierMedicalsByAthleteId(returnedUtilisateur.getId()));
+            returnedUtilisateur.setDossierMedicals(new ServiceDossierMedical().getDossierMedicalsByAthleteId(returnedUtilisateur.getId()));*/
             returnedUtilisateurs.add(returnedUtilisateur);
         }
         return returnedUtilisateurs;

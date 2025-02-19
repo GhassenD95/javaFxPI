@@ -1,5 +1,6 @@
 package services.module1;
 
+import enums.Division;
 import enums.Sport;
 import models.module1.Equipe;
 import models.module1.Utilisateur;
@@ -97,6 +98,7 @@ public class ServiceEquipe extends BaseService implements IService<Equipe> {
             returnedEquipe.setNom(rs.getString("nom"));
             returnedEquipe.setSport(Sport.valueOf(rs.getString("sport")));
             returnedEquipe.setIsLocal(rs.getBoolean("isLocal"));
+            returnedEquipe.setDivision(Division.valueOf(rs.getString("division")));
             int coach_id = rs.getInt("coach_id");
             if(rs.wasNull()) {
                 returnedEquipe.setCoach(null);
@@ -105,10 +107,10 @@ public class ServiceEquipe extends BaseService implements IService<Equipe> {
 
             }
             //fill players list
-            List<Utilisateur> utilisateurs = serviceUtilisateur.getAthletesByEquipeId(returnedEquipe.getId());
+            /*List<Utilisateur> utilisateurs = serviceUtilisateur.getAthletesByEquipeId(returnedEquipe.getId());
             List<Entrainment> entrainments = new ServiceEntrainment().getEntrainmentsByEquipeId(returnedEquipe.getId());
             returnedEquipe.setAthletes(utilisateurs);
-            returnedEquipe.setEntrainments(entrainments);
+            returnedEquipe.setEntrainments(entrainments);*/
             return returnedEquipe;
 
         }
@@ -149,7 +151,7 @@ public class ServiceEquipe extends BaseService implements IService<Equipe> {
         }
         return returnedEquipes;
     }
-    //liste des equipes assigné a un utilisateur coach
+    /*//liste des equipes assigné a un utilisateur coach
     public List<Equipe> getEquipesByCoachId(int coach_id ) throws SQLException {
         ServiceUtilisateur serviceUtilisateur = new ServiceUtilisateur();
         List<Equipe> returnedEquipes = new ArrayList<>();
@@ -182,7 +184,7 @@ public class ServiceEquipe extends BaseService implements IService<Equipe> {
 
         }
         return returnedEquipes;
-    }
+    }*/
 
 
 

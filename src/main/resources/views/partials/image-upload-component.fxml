@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.ImageUploadController"
+            prefHeight="400.0" prefWidth="600.0" >
+
+    <HBox alignment="BASELINE_LEFT" layoutX="42.0" layoutY="330.0" maxHeight="40.0" maxWidth="636.0" prefHeight="40.0" prefWidth="636.0">
+        <children>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="92.0" text="image" />
+            <Button alignment="CENTER" mnemonicParsing="false" text="upload" />
+            <Label fx:id="imageUploadMessage" alignment="CENTER" prefHeight="18.0" prefWidth="204.0" text="Label">
+                <HBox.margin>
+                    <Insets left="50.0" />
+                </HBox.margin>
+            </Label>
+        </children>
+        <padding>
+            <Insets left="105.5" />
+        </padding>
+    </HBox>
+
+</AnchorPane>

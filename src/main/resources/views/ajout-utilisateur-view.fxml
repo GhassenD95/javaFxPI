@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjoutUtilisateurController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" StackPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="ajouter utilisateur" />
+               </children>
+            </HBox>
+            <VBox alignment="TOP_CENTER">
+               <children>
+                  <HBox alignment="CENTER" maxHeight="40.0" maxWidth="636.0" prefHeight="40.0" prefWidth="636.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="92.0" text="Nom" />
+                        <TextField prefHeight="26.0" prefWidth="337.0" styleClass="text-field" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="92.0" layoutY="10.0" maxHeight="40.0" maxWidth="636.0" prefHeight="40.0" prefWidth="636.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="92.0" text="Prenom" />
+                        <TextField prefHeight="26.0" prefWidth="337.0" styleClass="text-field" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="92.0" layoutY="50.0" maxHeight="40.0" maxWidth="636.0" prefHeight="40.0" prefWidth="636.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="92.0" text="Email" />
+                        <TextField prefHeight="26.0" prefWidth="337.0" styleClass="text-field" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="92.0" layoutY="90.0" maxHeight="40.0" maxWidth="636.0" prefHeight="40.0" prefWidth="636.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="92.0" text="Mot de passe" />
+                        <TextField prefHeight="26.0" prefWidth="337.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="92.0" layoutY="130.0" maxHeight="40.0" maxWidth="636.0" prefHeight="40.0" prefWidth="636.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="92.0" text="Role" />
+                        <ComboBox prefHeight="26.0" prefWidth="334.0" styleClass="combo-box" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="92.0" layoutY="130.0" maxHeight="40.0" maxWidth="636.0" prefHeight="40.0" prefWidth="636.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="92.0" text="Adresse" />
+                        <TextField prefHeight="26.0" prefWidth="337.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="92.0" layoutY="210.0" maxHeight="40.0" maxWidth="636.0" prefHeight="40.0" prefWidth="636.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="92.0" text="Telephone" />
+                        <TextField prefHeight="26.0" prefWidth="337.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="92.0" layoutY="250.0" maxHeight="40.0" maxWidth="636.0" prefHeight="40.0" prefWidth="636.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="92.0" text="Status" />
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="330.0" spacing="20">
+                           <children>
+                              <RadioButton mnemonicParsing="false" text="Active" />
+                              <RadioButton layoutX="10.0" layoutY="21.0" mnemonicParsing="false" text="Inactive" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <AnchorPane fx:id="imageUploadContainer" layoutX="42.0" layoutY="370.0" prefWidth="636.0" prefHeight="100.0"/>
+
+
+                  <HBox alignment="CENTER" layoutX="92.0" layoutY="130.0" maxHeight="40.0" maxWidth="636.0" prefHeight="40.0" prefWidth="636.0">
+                       <children>
+                           <Label alignment="CENTER" prefHeight="18.0" prefWidth="92.0" text="equipe" />
+                           <ComboBox prefHeight="26.0" prefWidth="334.0" styleClass="combo-box" />
+                       </children>
+                   </HBox>
+                  <HBox alignment="CENTER" layoutX="42.0" layoutY="370.0" maxHeight="40.0" maxWidth="636.0" prefHeight="40.0" prefWidth="636.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="ajouter utilisateur">
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding></VBox>
+   </children>
+</StackPane>

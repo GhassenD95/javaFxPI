@@ -24,7 +24,7 @@ public class LoginViewController {
         }else{
             boolean auth = new Auth().login(email, password);
             if (auth) {
-                String fxml = "/hello-view.fxml";
+                String fxml = "/views/hello-view.fxml";
                 new SceneLoader(fxml, emailField);
             }else{
                 appMessage.setText("identifiant ou mot de passe incorrect");
