@@ -2,21 +2,12 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import models.module1.Utilisateur;
-import services.module1.ServiceUtilisateur;
-import tools.DbConnection;
 import utils.Auth;
 import utils.SceneLoader;
-import utils.Session;
 
-import java.io.IOException;
-import java.sql.SQLException;
-
-public class LoginView {
+public class LoginViewController {
     @FXML
     private TextField emailField;
     @FXML

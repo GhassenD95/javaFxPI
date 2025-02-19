@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<StackPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GestionUtilisateur">
+<StackPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GestionUtilisateurController">
    <children>
       <Label text="Label" />
    </children>
