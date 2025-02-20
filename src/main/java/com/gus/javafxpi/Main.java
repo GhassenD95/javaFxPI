@@ -9,10 +9,9 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
         try {
-            System.out.println(new ServiceUtilisateur().get(17));
-            System.out.println(new ServiceEquipe().get(17));
+            System.out.println(new ServiceEquipe().getAll());
         } catch (SQLException e) {
-            System.out.println("erreur");
+            throw new RuntimeException(e);
         }
     }
 }

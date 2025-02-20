@@ -141,11 +141,11 @@ public class ServiceEquipe extends BaseService implements IService<Equipe> {
                 returnedEquipe.setCoach(serviceUtilisateur.get(coach_id));
             }
 
-            //fill players list
+            /*//fill players list
             List<Utilisateur> utilisateurs = serviceUtilisateur.getAthletesByEquipeId(returnedEquipe.getId());
             List<Entrainment> entrainments = new ServiceEntrainment().getEntrainmentsByEquipeId(returnedEquipe.getId());
             returnedEquipe.setAthletes(utilisateurs);
-            returnedEquipe.setEntrainments(entrainments);
+            returnedEquipe.setEntrainments(entrainments);*/
 
             returnedEquipes.add(returnedEquipe);
         }

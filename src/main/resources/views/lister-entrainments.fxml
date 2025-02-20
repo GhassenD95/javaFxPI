@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.ListerEntrainments"
+            prefHeight="600.0" prefWidth="800.0">
+    <HBox alignment="CENTER" StackPane.alignment="CENTER">
+        <children>
+
+            <ScrollPane fitToHeight="true" fitToWidth="true">
+                <content>
+                    <VBox alignment="CENTER" maxHeight="500" maxWidth="350" spacing="15" style="-fx-padding: 20; -fx-background-color: white;">
+
+                        <!-- Liste des entrainements sans interaction de sélection -->
+                        <ListView fx:id="entrainementListView" style="-fx-font-size: 16px; -fx-background-color: #f1f1f1; -fx-border-color: #d1d1d1; -fx-border-radius: 8; -fx-padding: 10px; -fx-pref-width: 300px; -fx-pref-height: 400px;" />
+                    </VBox>
+                </content>
+            </ScrollPane>
+        </children>
+    </HBox>
+
+</StackPane>

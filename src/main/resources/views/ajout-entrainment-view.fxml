@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjoutEntrainmentView">
+   <HBox alignment="CENTER" StackPane.alignment="CENTER">
+      <children>
+      
+          <ScrollPane fitToHeight="true" fitToWidth="true">
+              <content>
+                  <VBox alignment="CENTER" maxHeight="500" maxWidth="350" spacing="15" style="-fx-padding: 20; -fx-background-color: white;">
+                      <TextField fx:id="nomField" promptText="Nom de l'entrainement" style="-fx-font-size: 16px; -fx-background-color: #f1f1f1; -fx-border-color: #d1d1d1; -fx-border-radius: 8; -fx-padding: 10px; -fx-pref-width: 300px;" />
+      
+                      <ComboBox fx:id="equipeComboBox" promptText="Sélectionner une équipe" style="-fx-font-size: 16px; -fx-background-color: #f1f1f1; -fx-border-color: #d1d1d1; -fx-border-radius: 8; -fx-padding: 10px; -fx-pref-width: 300px;" />
+      
+                      <ComboBox fx:id="installationComboBox" promptText="Sélectionner une installation" style="-fx-font-size: 16px; -fx-background-color: #f1f1f1; -fx-border-color: #d1d1d1; -fx-border-radius: 8; -fx-padding: 10px; -fx-pref-width: 300px;" />
+      
+                      <TextArea fx:id="descriptionArea" prefRowCount="2" promptText="Description" style="-fx-font-size: 16px; -fx-background-color: #f1f1f1; -fx-border-color: #d1d1d1; -fx-border-radius: 8; -fx-padding: 10px; -fx-pref-width: 300px;" />
+      
+                      <DatePicker fx:id="dateDebutPicker" promptText="Date début" style="-fx-font-size: 16px; -fx-background-color: #f1f1f1; -fx-border-color: #d1d1d1; -fx-border-radius: 8; -fx-padding: 10px; -fx-pref-width: 300px;" />
+      
+                      <DatePicker fx:id="dateFinPicker" promptText="Date fin" style="-fx-font-size: 16px; -fx-background-color: #f1f1f1; -fx-border-color: #d1d1d1; -fx-border-radius: 8; -fx-padding: 10px; -fx-pref-width: 300px;" />
+      
+                      <ListView fx:id="exerciceListView" style="-fx-font-size: 16px; -fx-background-color: #f1f1f1; -fx-border-color: #d1d1d1; -fx-border-radius: 8; -fx-padding: 10px; -fx-pref-width: 300px; -fx-pref-height: 200px;" />
+                      <Button fx:id="submitButton" onAction="#handleAddEntrainment" style="-fx-background-color: #1f8e8c; -fx-text-fill: white; -fx-border-radius: 8; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-pref-width: 120px;" text="Ajouter" />
+                  </VBox>
+              </content>
+          </ScrollPane>
+      </children>
+   </HBox>
+
+</StackPane>

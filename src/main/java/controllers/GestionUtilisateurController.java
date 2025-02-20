@@ -6,7 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import models.module1.Equipe;
 import models.module1.Utilisateur;
+import services.module1.ServiceEquipe;
 import services.module1.ServiceUtilisateur;
 import utils.SceneLoader;
 
@@ -46,7 +48,18 @@ public class GestionUtilisateurController {
     }
 
     public void onClickGoToAjout(MouseEvent actionEvent) {
-        SceneLoader sceneLoader = new SceneLoader("/views/")
+        new SceneLoader("/views/utilisateur-ajout.fxml", userCardContainer);
+        /*
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/utilisateur-ajout.fxml"));
+        try {
+            Parent root = loader.load();
+            AjoutUtilisateurController controller = loader.getController();
+            controller.setEquipes(new ServiceEquipe().getAll());
+            userCardContainer.getScene().setRoot(root);
 
+        } catch (IOException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+         */
     }
 }

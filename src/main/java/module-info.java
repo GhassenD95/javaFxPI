@@ -11,6 +11,7 @@ module com.gus.javafxpi {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires java.desktop;
 
     opens com.gus.javafxpi to javafx.fxml;
     exports com.gus.javafxpi;

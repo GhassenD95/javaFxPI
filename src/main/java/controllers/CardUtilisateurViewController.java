@@ -1,14 +1,18 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.module1.Utilisateur;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class CardUtilisateurViewController {
     @FXML
@@ -41,7 +45,11 @@ public class CardUtilisateurViewController {
     @FXML
     private Label utilisateurEquipe;
 
+    private Utilisateur utilisat;
+
     public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisat = utilisateur; // Store for later use
+
         String imageName = utilisateur.getImage_url();
 
         // Construct the path to the image file inside the resources/images/imageProfile folder
@@ -52,14 +60,14 @@ public class CardUtilisateurViewController {
         // Try to load the image from the resources folder
         Image image = null;
         try {
-            image = new Image(getClass().getResource(imagePath).toExternalForm());
+            image = new Image(Objects.requireNonNull(getClass().getResource(imagePath)).toExternalForm());
             if (image.isError()) {
                 throw new IOException("Image not found: " + imagePath);
             }
         } catch (Exception e) {
             System.out.println("Error loading image: " + e.getMessage());
             // If the image is not found or there's an error, set a default image
-            image = new Image(getClass().getResource("/images/imageProfile/default.jpg").toExternalForm());
+            image = new Image(getClass().getResource("/images/profileImages/default.png").toExternalForm());
         }
 
         // Set the image to the ImageView
@@ -89,4 +97,17 @@ public class CardUtilisateurViewController {
         return utilisateurCard;
     }
 
+    public void handleClick(MouseEvent mouseEvent) {
+        FXMLLoader loder = new FXMLLoader(getClass()
+                .getResource("/views/show-user-view.fxml"));
+        try {
+            Parent root = loder.load();
+            ShowUserController controller = loder.getController();
+            controller.setUtilisateur(utilisat);
+            utilisateurCard.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
